@@ -248,3 +248,6 @@ export PATH=$PATH:~/.cargo/bin/
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+# Alias to clean steam shader cache
+alias fuckthemshaders="rm ~/.local/share/Steam/steamapps/shadercache -fr"
