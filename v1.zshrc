@@ -96,11 +96,15 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" %F{red}✗%f"
 ZSH_THEME_GIT_PROMPT_CLEAN=" %F{green}✔%f"
 
 git_prompt_info() {
-  local ref dirty
-  ref=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
-  [ -n "$ref" ] || return
-  dirty=$(git status --porcelain 2>/dev/null)
-  echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref}${ZSH_THEME_GIT_PROMPT_SUFFIX}${dirty:+$ZSH_THEME_GIT_PROMPT_DIRTY}${dirty:+}${dirty:+}${dirty:-$ZSH_THEME_GIT_PROMPT_CLEAN}"
+    local ref dirty
+    ref=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+    [ -n "$ref" ] || return
+    if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
+        dirty="$ZSH_THEME_GIT_PROMPT_DIRTY"
+    else
+        dirty="$ZSH_THEME_GIT_PROMPT_CLEAN"
+    fi
+    echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref}${ZSH_THEME_GIT_PROMPT_SUFFIX}${dirty}"
 }
 
 if [ "$color_prompt" = yes ]; then
@@ -249,5 +253,4 @@ export PATH=$PATH:~/.cargo/bin/
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 
-# Alias to clean steam shader cache
 alias fuckthemshaders="rm ~/.local/share/Steam/steamapps/shadercache -fr"
