@@ -63,7 +63,7 @@ sudo pacman -S --needed --noconfirm \
     docker docker-compose \
     kicad kicad-library kicad-library-3d \
     kdenlive kleopatra ghidra obs-studio obs-studio-plugin-browser \
-    gwenview qbittorrent konsole v4l2loopback-dkms
+    gwenview qbittorrent konsole v4l2loopback-dkms ark peazip
 
 print_step "Enabling Docker service..."
 sudo systemctl enable --now docker.service
