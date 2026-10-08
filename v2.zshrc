@@ -70,6 +70,13 @@ fi
 # =============================================================================
 # 6. PROMPT & THEMING
 # =============================================================================
+# Comment out the active preset, uncomment exactly one alternative, then reload ~/.zshrc.
+# ZSH_THEME_COLOR=red
+# ZSH_THEME_COLOR=green
+ZSH_THEME_COLOR=blue
+# ZSH_THEME_COLOR=white
+# ZSH_THEME_COLOR=yellow
+
 # Chroot identification
 if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -94,7 +101,7 @@ git_prompt_info() {
 }
 
 # Main Prompt
-PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)──}(%B%F{%(#.red.blue)}%n%(#.💀.λ)%m%b%F{%(#.blue.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]%b $(git_prompt_info)\n%F{%(#.blue.green)}└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
+PROMPT=$'%F{%(#.${ZSH_THEME_COLOR}.green)}┌──${debian_chroot:+($debian_chroot)──}(%B%F{%(#.red.${ZSH_THEME_COLOR})}%n%(#.💀.λ)%m%b%F{%(#.${ZSH_THEME_COLOR}.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.${ZSH_THEME_COLOR}.green)}]%b $(git_prompt_info)\n%F{%(#.${ZSH_THEME_COLOR}.green)}└─%B%(#.%F{red}#.%F{${ZSH_THEME_COLOR}}$)%b%F{reset} '
 
 # Terminal Title
 case "$TERM" in
@@ -174,16 +181,16 @@ if [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=green,underline
     ZSH_HIGHLIGHT_STYLES[global-alias]=fg=magenta
     ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,underline
-    ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[commandseparator]="fg=${ZSH_THEME_COLOR},bold"
     ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=green,underline
     ZSH_HIGHLIGHT_STYLES[path]=underline
-    ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
-    ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[globbing]="fg=${ZSH_THEME_COLOR},bold"
+    ZSH_HIGHLIGHT_STYLES[history-expansion]="fg=${ZSH_THEME_COLOR},bold"
     ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=magenta
     ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=magenta
     ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=magenta
     ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=magenta
-    ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]="fg=${ZSH_THEME_COLOR},bold"
     ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
     ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
     ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]=fg=yellow
@@ -191,11 +198,11 @@ if [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=magenta
     ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=magenta
     ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=magenta
-    ZSH_HIGHLIGHT_STYLES[redirection]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[redirection]="fg=${ZSH_THEME_COLOR},bold"
     ZSH_HIGHLIGHT_STYLES[comment]=fg=black,bold
     ZSH_HIGHLIGHT_STYLES[arg0]=fg=green
     ZSH_HIGHLIGHT_STYLES[bracket-error]=fg=red,bold
-    ZSH_HIGHLIGHT_STYLES[bracket-level-1]=fg=blue,bold
+    ZSH_HIGHLIGHT_STYLES[bracket-level-1]="fg=${ZSH_THEME_COLOR},bold"
     ZSH_HIGHLIGHT_STYLES[bracket-level-2]=fg=green,bold
     ZSH_HIGHLIGHT_STYLES[bracket-level-3]=fg=magenta,bold
     ZSH_HIGHLIGHT_STYLES[bracket-level-4]=fg=yellow,bold
